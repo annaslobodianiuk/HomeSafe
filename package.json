@@ -1,0 +1,22 @@
+{
+  "name": "homesafe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HomeSafe - React TypeScript frontend and Spring Boot migration for finding safe rental housing for refugees and internally displaced persons.",
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "dev:legacy": "concurrently \"npm:dev --workspace backend\" \"npm:dev --workspace frontend\"",
+    "build:legacy": "npm run build --workspace backend && npm run build --workspace frontend",
+    "db:generate": "npm run db:generate --workspace backend",
+    "db:migrate": "npm run db:migrate --workspace backend",
+    "db:seed": "npm run db:seed --workspace backend"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

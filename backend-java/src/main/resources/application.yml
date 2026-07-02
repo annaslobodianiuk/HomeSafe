@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: homesafe-backend-java
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/homesafe}
+    username: ${DATABASE_USERNAME:homesafe}
+    password: ${DATABASE_PASSWORD:homesafe_password}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+homesafe:
+  cors-origins:
+    - ${FRONTEND_URL:http://localhost:5173}
+    - http://127.0.0.1:5173
+    - http://localhost:4173
+    - http://127.0.0.1:4173
+  session-days: 7

@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: homesafe-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: homesafe
+      POSTGRES_PASSWORD: homesafe_password
+      POSTGRES_DB: homesafe
+    ports:
+      - "5432:5432"
+    volumes:
+      - homesafe_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  homesafe_postgres_data:

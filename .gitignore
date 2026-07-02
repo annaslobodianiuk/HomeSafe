@@ -1,0 +1,11 @@
+node_modules
+dist
+.npm-cache
+backend/src/generated
+.env
+.DS_Store
+*.log
+coverage
+.idea
+.vscode
+backend-java/target
