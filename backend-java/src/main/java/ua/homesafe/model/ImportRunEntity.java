@@ -1,7 +1,6 @@
 package ua.homesafe.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.OffsetDateTime;
 
@@ -17,7 +16,6 @@ public class ImportRunEntity {
     @JoinColumn(name = "\"dataSourceId\"")
     private DataSourceEntity dataSource;
 
-    @ColumnTransformer(write = "?::\"ImportStatus\"")
     @Column(name = "\"status\"")
     private String status;
     @Column(name = "\"requestedCity\"")

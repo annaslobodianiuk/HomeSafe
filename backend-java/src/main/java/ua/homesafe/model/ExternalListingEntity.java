@@ -1,7 +1,6 @@
 package ua.homesafe.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -19,7 +18,6 @@ public class ExternalListingEntity {
     @JoinColumn(name = "\"dataSourceId\"")
     private DataSourceEntity dataSource;
 
-    @ColumnTransformer(write = "?::\"ProviderCode\"")
     @Column(name = "\"providerCode\"")
     private String providerCode;
     @Column(name = "\"externalId\"")
@@ -31,7 +29,6 @@ public class ExternalListingEntity {
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "\"rawPayload\"")
     private String rawPayload;
-    @ColumnTransformer(write = "?::\"CatalogStatus\"")
     @Column(name = "\"status\"")
     private String status;
     @JdbcTypeCode(SqlTypes.ARRAY)

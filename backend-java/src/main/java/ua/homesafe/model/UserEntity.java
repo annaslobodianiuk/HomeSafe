@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.OffsetDateTime;
 
@@ -28,11 +27,9 @@ public class UserEntity {
     @Column(name = "\"passwordSalt\"")
     private String passwordSalt;
 
-    @ColumnTransformer(write = "?::\"UserRole\"")
     @Column(name = "\"role\"")
     private String role;
 
-    @ColumnTransformer(write = "?::\"UserStatus\"")
     @Column(name = "\"status\"")
     private String status;
 

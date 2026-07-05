@@ -1,7 +1,6 @@
 package ua.homesafe.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -54,7 +53,6 @@ public class ApartmentEntity {
     private Double latitude;
     @Column(name = "\"longitude\"")
     private Double longitude;
-    @ColumnTransformer(write = "?::\"ListingSource\"")
     @Column(name = "\"source\"")
     private String source;
     @Column(name = "\"sourceUrl\"")
@@ -69,15 +67,12 @@ public class ApartmentEntity {
     private Integer valueScore;
     @Column(name = "\"comfortScore\"")
     private Integer comfortScore;
-    @ColumnTransformer(write = "?::\"FraudRisk\"")
     @Column(name = "\"fraudRisk\"")
     private String fraudRisk;
     @Column(name = "\"qualityScore\"")
     private Integer qualityScore;
-    @ColumnTransformer(write = "?::\"CatalogStatus\"")
     @Column(name = "\"catalogStatus\"")
     private String catalogStatus;
-    @ColumnTransformer(write = "?::\"ProviderCode\"")
     @Column(name = "\"providerCode\"")
     private String providerCode;
     @Column(name = "\"externalId\"")

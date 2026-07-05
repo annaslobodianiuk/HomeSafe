@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -17,7 +16,6 @@ public class DataSourceEntity {
     @Id
     @Column(name = "\"id\"")
     private String id;
-    @ColumnTransformer(write = "?::\"ProviderCode\"")
     @Column(name = "\"code\"")
     private String code;
     @Column(name = "\"name\"")
@@ -35,7 +33,6 @@ public class DataSourceEntity {
     private String config;
     @Column(name = "\"lastSyncAt\"")
     private OffsetDateTime lastSyncAt;
-    @ColumnTransformer(write = "?::\"ImportStatus\"")
     @Column(name = "\"lastStatus\"")
     private String lastStatus;
     @Column(name = "\"lastError\"")
