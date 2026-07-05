@@ -16,26 +16,26 @@ public class DataSourceEntity {
     @Id
     @Column(name = "\"id\"")
     private String id;
-    @Column(name = "\"code\"")
+    @Column(name = "\"code\"", length = 64)
     private String code;
-    @Column(name = "\"name\"")
+    @Column(name = "\"name\"", length = 120)
     private String name;
-    @Column(name = "\"baseUrl\"")
+    @Column(name = "\"baseUrl\"", length = 512)
     private String baseUrl;
-    @Column(name = "\"apiKeyEnv\"")
+    @Column(name = "\"apiKeyEnv\"", length = 120)
     private String apiKeyEnv;
     @Column(name = "\"enabled\"")
     private Boolean enabled;
     @Column(name = "\"reliability\"")
     private Integer reliability;
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "\"config\"")
+    @Column(name = "\"config\"", columnDefinition = "jsonb")
     private String config;
     @Column(name = "\"lastSyncAt\"")
     private OffsetDateTime lastSyncAt;
-    @Column(name = "\"lastStatus\"")
+    @Column(name = "\"lastStatus\"", length = 64)
     private String lastStatus;
-    @Column(name = "\"lastError\"")
+    @Column(name = "\"lastError\"", columnDefinition = "text")
     private String lastError;
 
     public String getId() { return id; }

@@ -32,7 +32,7 @@ public class ImportRunEntity {
     private Integer rejectedCount;
     @Column(name = "\"duplicateCount\"")
     private Integer duplicateCount;
-    @Column(name = "\"errorMessage\"")
+    @Column(name = "\"errorMessage\"", columnDefinition = "text")
     private String errorMessage;
     @Column(name = "\"startedAt\"")
     private OffsetDateTime startedAt;

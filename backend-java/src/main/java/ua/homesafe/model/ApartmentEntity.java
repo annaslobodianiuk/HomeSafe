@@ -22,7 +22,7 @@ public class ApartmentEntity {
     private String city;
     @Column(name = "\"district\"")
     private String district;
-    @Column(name = "\"address\"")
+    @Column(name = "\"address\"", columnDefinition = "text")
     private String address;
     @Column(name = "\"price\"")
     private Integer price;
@@ -36,15 +36,15 @@ public class ApartmentEntity {
     private Integer floor;
     @Column(name = "\"totalFloors\"")
     private Integer totalFloors;
-    @Column(name = "\"description\"")
+    @Column(name = "\"description\"", columnDefinition = "text")
     private String description;
-    @Column(name = "\"imageUrl\"")
+    @Column(name = "\"imageUrl\"", columnDefinition = "text")
     private String imageUrl;
     @Column(name = "\"currency\"")
     private String currency;
     @Column(name = "\"ownerType\"")
     private String ownerType;
-    @Column(name = "\"documents\"")
+    @Column(name = "\"documents\"", columnDefinition = "text")
     private String documents;
     @JdbcTypeCode(SqlTypes.ARRAY)
     @Column(name = "\"riskFactors\"")
@@ -55,7 +55,7 @@ public class ApartmentEntity {
     private Double longitude;
     @Column(name = "\"source\"")
     private String source;
-    @Column(name = "\"sourceUrl\"")
+    @Column(name = "\"sourceUrl\"", columnDefinition = "text")
     private String sourceUrl;
     @Column(name = "\"isWithoutBroker\"")
     private Boolean withoutBroker;

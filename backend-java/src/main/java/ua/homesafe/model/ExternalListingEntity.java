@@ -22,12 +22,12 @@ public class ExternalListingEntity {
     private String providerCode;
     @Column(name = "\"externalId\"")
     private String externalId;
-    @Column(name = "\"sourceUrl\"")
+    @Column(name = "\"sourceUrl\"", columnDefinition = "text")
     private String sourceUrl;
     @Column(name = "\"fingerprint\"")
     private String fingerprint;
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "\"rawPayload\"")
+    @Column(name = "\"rawPayload\"", columnDefinition = "jsonb")
     private String rawPayload;
     @Column(name = "\"status\"")
     private String status;
