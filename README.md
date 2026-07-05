@@ -77,20 +77,12 @@ Backend API: http://localhost:8080/api
 
 Administrator:
 
-- Email: `admin@homesafe.ua`
-- Password: `Admin123!`
+- Email: `admin@homesafe.local`
+- Password: `Admin12345!`
 
-Approved user:
+This administrator account is created automatically on backend startup.
 
-- Email: `user@homesafe.ua`
-- Password: `User123!`
-
-Pending user:
-
-- Email: `pending@homesafe.ua`
-- Password: `User123!`
-
-The administrator can approve or reject pending user registrations from the administrator dashboard.
+Regular user accounts are not pre-seeded. Create them through the registration form, then approve them from the administrator dashboard.
 
 ## Real Listing Integrations
 
