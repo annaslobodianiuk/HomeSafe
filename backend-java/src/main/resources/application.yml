@@ -4,14 +4,14 @@ server:
 spring:
   application:
     name: homesafe-backend-java
+  profiles:
+    default: dev
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/homesafe}
     username: ${DATABASE_USERNAME:homesafe}
     password: ${DATABASE_PASSWORD:homesafe_password}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
     open-in-view: false
     properties:
       hibernate:

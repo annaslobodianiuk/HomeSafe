@@ -15,11 +15,11 @@ HomeSafe is organized as a full-stack React application with a separate API and 
 
 ## Backend
 
-- Node.js + Express
+- Java + Spring Boot
 - REST API under `/api`
-- Prisma ORM
+- Spring Data JPA / Hibernate
 - PostgreSQL database
-- Validation with Zod
+- Bean Validation and typed DTOs
 
 ## Database
 

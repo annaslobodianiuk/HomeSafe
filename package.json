@@ -6,15 +6,12 @@
   "scripts": {
     "dev": "npm run dev --workspace frontend",
     "build": "npm run build --workspace frontend",
-    "dev:legacy": "concurrently \"npm:dev --workspace backend\" \"npm:dev --workspace frontend\"",
-    "build:legacy": "npm run build --workspace backend && npm run build --workspace frontend",
-    "db:generate": "npm run db:generate --workspace backend",
-    "db:migrate": "npm run db:migrate --workspace backend",
-    "db:seed": "npm run db:seed --workspace backend"
+    "db:generate": "node -e \"console.log('Legacy Node backend was removed. Use backend-java and start the Spring Boot app instead.')\"",
+    "db:migrate": "node -e \"console.log('No npm migration step is configured for backend-java. Start PostgreSQL with Docker and run the Spring Boot backend from backend-java.')\"",
+    "db:seed": "node -e \"console.log('Demo admin/source seeding now happens from backend-java on application startup.')\""
   },
   "workspaces": [
-    "frontend",
-    "backend"
+    "frontend"
   ],
   "devDependencies": {
     "concurrently": "^9.1.2"

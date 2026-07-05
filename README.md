@@ -2,11 +2,10 @@
 
 HomeSafe is a master's thesis project: an intelligent information system for aggregating and evaluating rental apartments for refugees and internally displaced persons without intermediaries.
 
-The repository currently contains two backend tracks during migration:
+The repository currently contains:
 
 - `frontend` - React + TypeScript client
-- `backend-java` - new Spring Boot backend
-- `backend` - legacy Node.js backend kept temporarily as a reference while the Java migration is completed
+- `backend-java` - Spring Boot backend
 
 The target architecture is:
 
@@ -46,21 +45,33 @@ docker compose up -d
 
 Docker Desktop must be running before this command.
 
-3. Create database tables and seed demo data:
+3. Database note:
 
 ```bash
 npm run db:migrate
 npm run db:seed
 ```
 
-4. Run the project:
+These commands are now informational only. The old Node backend workspace was removed, so there is no npm-based migration pipeline anymore.
+
+For local development, the Spring Boot backend now starts with the `dev` profile by default and automatically creates or updates the PostgreSQL schema.
+
+4. Run the backend:
+
+- open `backend-java/pom.xml` in IntelliJ IDEA as a Maven project
+- let IntelliJ download dependencies
+- run `ua.homesafe.HomesafeBackendJavaApplication`
+
+If you want the strict mode without automatic schema updates, start the backend with the `prod` profile.
+
+5. Run the frontend:
 
 ```bash
 npm run dev
 ```
 
 Frontend: http://localhost:5173  
-Backend API: http://localhost:4001/api
+Backend API: http://localhost:8080/api
 
 ## Demo Accounts
 
@@ -88,13 +99,12 @@ The backend includes provider adapters for DIM.RIA and OLX, raw listing staging,
 Important integration note:
 
 - `DIM.RIA` can be used for real public listing search by filters.
-- `OLX` partner API from the provided OpenAPI document exposes the authorized partner account adverts and reference data, not a public search endpoint for the whole OLX marketplace.
+- `OLX` is currently imported through a public listing parser flow, because the supplied partner API is not used for full public marketplace search in this project.
 
-Real synchronization requires private API keys in `backend/.env`:
+Real synchronization requires private API keys in backend environment variables:
 
 ```env
 DIM_RIA_API_KEY="your-key"
-OLX_API_KEY="your-olx-bearer-access-token"
 ```
 
 Both sources are disabled until keys are configured and an administrator enables them. See `docs/data-ingestion.md` for the ingestion architecture and administrator endpoints.
@@ -116,7 +126,7 @@ The first version includes:
 - administrator approval workflow
 - role-based user and administrator dashboards
 - protected apartment favorites
-- PostgreSQL schema and migration
+- PostgreSQL persistence for local development
 
 ## Thesis Focus
 

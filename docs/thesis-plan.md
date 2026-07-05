@@ -22,7 +22,7 @@ To develop an information system that helps internally displaced persons find re
 2. Design a data model for apartment listings, infrastructure and price history.
 3. Develop a scoring approach for Trust Score, Value Score and Comfort Score.
 4. Implement a React-based user interface for search and recommendation explanation.
-5. Implement a Node.js backend API and PostgreSQL database.
+5. Implement a Java Spring Boot backend API and PostgreSQL database.
 6. Test the system on demonstration data and evaluate recommendation transparency.
 
 ## Practical Value
@@ -31,7 +31,7 @@ The system can reduce search time, improve safety, and help users compare apartm
 
 ## Future Improvements
 
-- Real integration with open housing sources
+- Real integration with open housing sources and public parsers
 - Map provider integration
 - User authentication
 - Saved searches and notifications

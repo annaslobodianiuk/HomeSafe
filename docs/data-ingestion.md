@@ -16,29 +16,27 @@ DIM.RIA location identifiers must be taken from the official locations API. A sy
 
 - Provider code: `OLX`
 - Base URL: `https://www.olx.ua`
-- Environment variable: `OLX_API_KEY`
-- Purpose: adverts of the authorized OLX partner account
-- Authentication: `Authorization: Bearer <access_token>` and `Version: 2.0`
+- Purpose: public long-term apartment rental listings imported through page parsing
+- Authentication: not used in the current parser flow
 
-The provided `partner_api.yaml` documents these relevant endpoints:
+The current OLX integration does not use the partner-account adverts API. Instead, it uses:
 
-- `POST /api/open/oauth/token`
-- `GET /api/partner/adverts`
-- `GET /api/partner/cities/{cityId}`
-- `GET /api/partner/cities/{cityId}/districts`
+- the OLX public search page for long-term apartment rent by city;
+- public listing detail pages;
+- embedded structured data (`application/ld+json`) and visible page parameters from the HTML.
 
-HomeSafe currently reads `OLX_API_KEY` as an already issued bearer access token. A sync request accepts `city`, `district`, `limit`, `offset`, `page`, and `category_ids`.
+An OLX sync request accepts `city`, `district`, `limit`, and `page`. The source config maps supported cities to OLX path slugs, for example `Київ -> kiev`.
 
-Important: this partner API does not provide public search over the entire OLX marketplace in the supplied specification. It returns adverts available to the authorized partner account, so OLX is useful here as a second managed source, not as a full public aggregator feed.
+Important: the official OLX partner API does not provide public marketplace search in the supplied specification, so HomeSafe uses a separate public parser flow for OLX instead of the partner-account adverts API.
 
-Provider paths are stored in the `DataSource.config` JSON field. They can be updated without changing the common ingestion pipeline if an upstream API version changes.
+Provider paths are stored in the `DataSource.config` JSON field. They can be updated without changing the common ingestion pipeline if an upstream page structure changes.
 
 ## Processing Pipeline
 
-1. Fetch authorized listings from a provider API.
-2. Save the original provider JSON in `ExternalListing`.
+1. Fetch listings from a provider API or public page source.
+2. Save the original provider payload in `ExternalListing`.
 3. Normalize fields into the HomeSafe apartment format.
-4. Generate a stable address/room/area fingerprint.
+4. Generate a stable address, room, and area fingerprint.
 5. Detect cross-provider duplicates.
 6. Calculate the market median for the same city, district, room count, and currency.
 7. Calculate Trust, Value, Comfort, and overall Quality scores.
@@ -84,12 +82,12 @@ All endpoints require an approved administrator session.
 
 ## Automatic Synchronization
 
-Set the following variables only after API keys and provider targets are configured:
+If scheduled ingestion is enabled in a future iteration, the targets should follow the same normalized query structure, for example:
 
 ```env
 INGESTION_ENABLED="true"
 INGESTION_INTERVAL_MINUTES="60"
-INGESTION_TARGETS_JSON='[{"code":"DIM_RIA","query":{"cityId":0,"stateId":0,"limit":20}},{"code":"OLX","query":{"city":"Львів","district":"Франківський","limit":20}}]'
+INGESTION_TARGETS_JSON='[{"code":"DIM_RIA","query":{"cityId":10,"stateId":10,"limit":6}},{"code":"OLX","query":{"city":"Київ","limit":6}}]'
 ```
 
-The minimum scheduler interval is 15 minutes. Provider quotas and terms must be respected.
+The minimum scheduler interval should remain conservative, and provider quotas and terms must be respected.
